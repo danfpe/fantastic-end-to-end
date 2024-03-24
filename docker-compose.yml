@@ -1,0 +1,43 @@
+version: '3.8'  
+services:  
+  app:  
+    build:  
+      context: ./backend  
+      dockerfile: docker/Dockerfile     
+    ports:  
+      - "3000:3000"  
+    environment:  
+      - DB_HOST=db  
+      - DB_USER=postgres  
+      - DB_PASS=mysecretpassword  
+      - DB_NAME=todo_app  
+      - DB_PORT=5432  
+    depends_on:  
+      - db  
+    volumes:  
+      - /usr/src/app/node_modules 
+  
+  db:  
+    image: postgres:13  
+    environment:  
+      - POSTGRES_USER=postgres  
+      - POSTGRES_PASSWORD=mysecretpassword  
+      - POSTGRES_DB=todo_app  
+    ports:  
+      - "5432:5432"  
+    volumes:  
+      - postgres_data:/var/lib/postgresql/data  
+  
+  frontend:  
+    build:  
+      context: ./fantastic-app
+      dockerfile: docker/Dockerfile  
+    ports:  
+      - "3001:3001"  
+    depends_on:  
+      - app  
+    environment:  
+      - REACT_APP_BACKEND_URL=http://app:3000  
+  
+volumes:  
+  postgres_data:  

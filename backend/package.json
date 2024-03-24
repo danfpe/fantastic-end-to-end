@@ -1,0 +1,25 @@
+{  
+  "name": "backend",  
+  "version": "1.0.0",  
+  "description": "",  
+  "main": "dist/index.js",  
+  "scripts": {  
+    "start": "node dist/index.js",  
+    "build": "tsc",  
+    "dev": "tsc -w & nodemon dist/index.js"  
+  },  
+  "keywords": [],  
+  "author": "Danfa Peng",  
+  "license": "ISC",  
+  "dependencies": {  
+    "express": "^4.19.1",  
+    "pg": "^8.11.3"  
+  },  
+  "devDependencies": {  
+    "@types/express": "^4.17.21",  
+    "@types/node": "^20.11.30",  
+    "@types/pg": "^8.11.4",  
+    "typescript": "^5.4.3",  
+    "nodemon": "^2.0.19"  
+  }  
+}  
